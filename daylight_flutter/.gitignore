@@ -43,3 +43,10 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Flutter Web
+web/build/
+.last_build_id
+
+# Exceptions to above rules.
+!/android/app/src/main/AndroidManifest.xml
