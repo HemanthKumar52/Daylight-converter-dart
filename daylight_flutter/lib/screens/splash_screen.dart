@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import '../utils/theme_colors.dart';
 import 'home_screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -15,7 +14,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     // Navigate to Home after 1 second
-    Timer(const Duration(seconds: 1), () {
+    Timer(const Duration(seconds: 5), () {
       if (mounted) {
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(builder: (context) => const HomeScreen()),
@@ -33,25 +32,41 @@ class _SplashScreenState extends State<SplashScreen> {
       body: Stack(
         fit: StackFit.expand,
         children: [
-          // Center: Application Name
+                  // Center: Application Icon and Title
           Center(
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                ShaderMask(
-                  shaderCallback: (bounds) => const LinearGradient(
-                    colors: [ThemeColors.daylightStart, ThemeColors.daylightEnd],
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                  ).createShader(bounds),
-                  child: const Text(
-                    "Daylight",
-                    style: TextStyle(
-                      fontSize: 48,
-                      fontWeight: FontWeight.w900,
-                      color: Colors.white, // Required for ShaderMask
-                      letterSpacing: 1.2,
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(34),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withValues(alpha: 0.1),
+                        blurRadius: 20,
+                        offset: const Offset(0, 10),
+                      ),
+                    ],
+                  ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(34),
+                    child: Image.asset(
+                      'assets/images/app_icon.png',
+                      width: 150,
+                      height: 150,
+                      fit: BoxFit.cover,
                     ),
+                  ),
+                ),
+                const SizedBox(height: 24),
+                Text(
+                  "Daylight",
+                  style: TextStyle(
+                    fontFamily: 'Outfit',
+                    fontSize: 32,
+                    fontWeight: FontWeight.w700,
+                    color: isDark ? Colors.white : Colors.black,
+                    letterSpacing: 0.5,
                   ),
                 ),
               ],
@@ -62,55 +77,30 @@ class _SplashScreenState extends State<SplashScreen> {
           Positioned(
             left: 0,
             right: 0,
-            bottom: MediaQuery.of(context).padding.bottom + 20,
+            bottom: MediaQuery.of(context).padding.bottom + 40,
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  "Powered by".toUpperCase(),
+                  "Ārāycci",
                   style: TextStyle(
-                    fontSize: 12,
-                    color: isDark ? Colors.white70 : Colors.black54,
-                    fontWeight: FontWeight.w500,
+                    fontFamily: 'Outfit', // Using the app's font, fallback to system if needed
+                    fontSize: 40,
+                    fontWeight: FontWeight.w900,
+                    fontStyle: FontStyle.italic,
+                    color: isDark ? Colors.white : Colors.black,
                     letterSpacing: 1.0,
                   ),
                 ),
-                const SizedBox(height: 12),
-                // Kaaspro Logo
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-                  // No background color for adaptive look, or transparent
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      // "Reverse K" symbol
-                      Text(
-                        "", 
-                        style: TextStyle(
-                          color: isDark ? Colors.white : Colors.black, 
-                          fontSize: 20, 
-                          fontWeight: FontWeight.w900,
-                          letterSpacing: -2,
-                        ),
-                      ),
-                      const SizedBox(width: 4),
-                      // "kaaspro" text
-                      RichText(
-                        text: TextSpan(
-                          style: TextStyle(
-                            fontFamily: 'Sans', // Default system font
-                            fontSize: 22, // Slightly larger to match standard logo visual
-                            fontWeight: FontWeight.bold,
-                            color: isDark ? Colors.white : Colors.black,
-                          ),
-                          children: const [
-                            TextSpan(text: "kaa"),
-                            TextSpan(text: "s", style: TextStyle(color: Color(0xFFE91E63))), // Pink accent always
-                            TextSpan(text: "pro"),
-                          ]
-                        ),
-                      ),
-                    ],
+                const SizedBox(height: 8),
+                Text(
+                  "POWERED BY KAASPRO",
+                  style: TextStyle(
+                    fontFamily: 'Outfit',
+                    fontSize: 12,
+                    color: isDark ? Colors.white70 : Colors.black54,
+                    fontWeight: FontWeight.w300,
+                    letterSpacing: 2.0,
                   ),
                 ),
               ],

@@ -162,8 +162,8 @@ class _TimeSliderState extends State<TimeSlider> {
                                  });
                                },
                                onHorizontalDragUpdate: (details) {
-                                   // Sensitivity factor: 1.5x (makes it easier to drag)
-                                   final sensitivity = 1.5; 
+                                   // Sensitivity factor: 2.5x (increased from 1.5x)
+                                   final sensitivity = 2.5; 
                                    final dragHours = (details.primaryDelta! * sensitivity) / pixelsPerHour;
                                    
                                    double newOffset = widget.hourOffset + dragHours;
@@ -267,7 +267,9 @@ class _TimeSliderState extends State<TimeSlider> {
        decoration: BoxDecoration(
          color: knobColor,
          borderRadius: BorderRadius.circular(12),
-         border: isDragging && isDark ? Border.all(color: Colors.white.withValues(alpha: 0.2), width: 1) : null, // Subtle border for black knob
+         border: isDragging 
+            ? Border.all(color: isDark ? Colors.grey : Colors.white, width: 1) 
+            : null,
          boxShadow: [
             BoxShadow(
               color: Colors.black.withValues(alpha: 0.2),
@@ -311,7 +313,8 @@ class SliderTrackPainter extends CustomPainter {
     final trackRRect = RRect.fromRectAndRadius(trackRect, const Radius.circular(2));
     
     // Draw Background Track (Black in Dark, White in Light)
-    final bgPaint = Paint()..color = isDark ? Colors.black : Colors.white;
+    // Draw Background Track (White in Dark, Light Grey in Light for visibility)
+    final bgPaint = Paint()..color = isDark ? Colors.white.withValues(alpha: 0.5) : const Color(0xFFE0E0E0);
     canvas.drawRRect(trackRRect, bgPaint);
 
     // Calculate Segments for Daylight
