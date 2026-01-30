@@ -1,0 +1,7 @@
+organization=hemanthkumar52
+projectKey=hemanthkumar52_Daylight-converter
+serverUrl=https://sonarcloud.io
+serverVersion=8.0.0.79235
+dashboardUrl=https://sonarcloud.io/dashboard?id=hemanthkumar52_Daylight-converter
+ceTaskId=AZwNOJWK5EvrRVH3Myct
+ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AZwNOJWK5EvrRVH3Myct

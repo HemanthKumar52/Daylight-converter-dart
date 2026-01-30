@@ -64,6 +64,23 @@ class _AddTimeZoneScreenState extends State<AddTimeZoneScreen> {
     final store = Provider.of<TimeZoneStore>(context);
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
+    Widget? suffixIconWidget;
+    if (searchText.isNotEmpty) {
+      suffixIconWidget = GestureDetector(
+        onTap: () {
+          _searchController.clear();
+          setState(() {
+            searchText = "";
+          });
+        },
+        child: Icon(
+          CupertinoIcons.clear_circled_solid,
+          size: 18,
+          color: isDark ? Colors.grey : Colors.grey.shade600,
+        ),
+      );
+    }
+
     return Column(
       children: [
         // Search Bar at Top
@@ -97,21 +114,7 @@ class _AddTimeZoneScreenState extends State<AddTimeZoneScreen> {
                   fontSize: 17,
                 ),
                 border: InputBorder.none,
-                suffixIcon: searchText.isNotEmpty
-                    ? GestureDetector(
-                        onTap: () {
-                          _searchController.clear();
-                          setState(() {
-                            searchText = "";
-                          });
-                        },
-                        child: Icon(
-                          CupertinoIcons.clear_circled_solid,
-                          size: 18,
-                          color: isDark ? Colors.grey : Colors.grey.shade600,
-                        ),
-                      )
-                    : null,
+                suffixIcon: suffixIconWidget,
               ),
               onChanged: (value) {
                 setState(() {
@@ -126,13 +129,12 @@ class _AddTimeZoneScreenState extends State<AddTimeZoneScreen> {
         Expanded(
           child: ListView.separated(
             controller: widget.scrollController, 
-            padding: const EdgeInsets.symmetric(horizontal: 16), // Boxed list style? No, usually edge to edge or 16pad. Screenshot shows full width separators? No, inset.
-            // But wait, the screenshot shows the list content. It looks like standard iOS List.
+            padding: const EdgeInsets.symmetric(horizontal: 16), 
             itemCount: filteredTimeZones.length,
             separatorBuilder: (c, i) => Divider(
               height: 1, 
               color: isDark ? Colors.white.withValues(alpha: 0.15) : Colors.black.withValues(alpha: 0.1), 
-              indent: 0 // Screenshot seems to have full width or slight indent. I'll use 0 or standard 16. iOS uses 16 indent generally.
+              indent: 0 
             ),
             itemBuilder: (context, index) {
               final tz = filteredTimeZones[index];
@@ -170,9 +172,9 @@ class _AddTimeZoneScreenState extends State<AddTimeZoneScreen> {
                          ),
                        ),
                        if (added)
-                         Icon(
+                         const Icon(
                            CupertinoIcons.checkmark_alt_circle_fill, 
-                           color: const Color(0xFFFF9900), 
+                           color: Color(0xFFFF9900), 
                            size: 22
                          ),
                     ],

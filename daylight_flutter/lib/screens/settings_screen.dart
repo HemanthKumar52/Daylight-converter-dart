@@ -45,7 +45,7 @@ class SettingsScreen extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                    Text(
-                     settings.themeMode == ThemeMode.system ? "System" : (settings.themeMode == ThemeMode.light ? "Light" : "Dark"),
+                     _getThemeLabel(settings.themeMode),
                      style: GoogleFonts.outfit(
                        color: isDark ? Colors.white.withValues(alpha: 0.6) : Colors.black.withValues(alpha: 0.6),
                        fontSize: 17,
@@ -123,5 +123,13 @@ class SettingsScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  String _getThemeLabel(ThemeMode mode) {
+    switch (mode) {
+      case ThemeMode.system: return "System";
+      case ThemeMode.light: return "Light";
+      case ThemeMode.dark: return "Dark";
+    }
   }
 }
