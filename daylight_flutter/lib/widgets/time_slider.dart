@@ -68,7 +68,7 @@ class _TimeSliderState extends State<TimeSlider> {
   @override
   Widget build(BuildContext context) {
     // These constants define the inner layout
-    const trackPadding = 25.5;
+    final trackPadding = Responsive.isTabletOrLarger(context) ? 32.0 : 25.5;
     // We wrap everything in a glass container with padding around it
      final isDark = Theme.of(context).brightness == Brightness.dark;
      final bottomPadding = MediaQuery.of(context).padding.bottom;
@@ -184,7 +184,7 @@ class _TimeSliderState extends State<TimeSlider> {
   }
   
   Widget _buildSliderTrack(double trackWidth, double knobX, double pixelsPerHour, bool isDark) {
-    const double knobWidth = 38.0;
+    final double knobWidth = Responsive.isTabletOrLarger(context) ? 48.0 : 38.0;
     return SizedBox(
        width: trackWidth,
        height: 24,
@@ -300,8 +300,8 @@ class _TimeSliderState extends State<TimeSlider> {
 
      return AnimatedContainer(
        duration: const Duration(milliseconds: 200),
-       width: 40,
-       height: 24,
+       width: Responsive.isTabletOrLarger(context) ? 50.0 : 40.0,
+       height: Responsive.isTabletOrLarger(context) ? 30.0 : 24.0,
        decoration: BoxDecoration(
          color: knobColor,
          borderRadius: BorderRadius.circular(12),
