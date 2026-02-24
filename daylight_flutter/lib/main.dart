@@ -78,7 +78,7 @@ class DaylightApp extends StatelessWidget {
     final settings = Provider.of<AppSettings>(context);
 
     return MaterialApp(
-      title: 'Daylight',
+      title: 'Daylight Zones (Āṟāycci)',
       debugShowCheckedModeBanner: false,
       themeMode: settings.themeMode,
       theme: ThemeData(
