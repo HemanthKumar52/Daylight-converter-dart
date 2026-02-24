@@ -69,7 +69,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 ),
                 SizedBox(height: isLargeScreen ? 32 : 24),
                 Text(
-                  "Daylight",
+                  "Daylight Zones",
                   style: TextStyle(
                     fontFamily: 'Outfit',
                     fontSize: titleFontSize,

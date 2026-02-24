@@ -179,7 +179,7 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Row(
               children: [
                 Text(
-                  "Daylight",
+                  "Daylight Zones",
                   style: GoogleFonts.outfit(
                     fontSize: headerFontSize,
                     fontWeight: FontWeight.w900,
@@ -218,8 +218,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                       return false;
                                     },
                                     child: DraggableScrollableSheet(
-                                      initialChildSize: 0.5,
-                                      minChildSize: 0.4,
+                                      initialChildSize: Responsive.isTabletOrLarger(context) ? 0.6 : 0.5,
+                                      minChildSize: Responsive.isTabletOrLarger(context) ? 0.35 : 0.4,
                                       maxChildSize: 0.95,
                                       builder: (context, scrollController) {
                                         return GlassBottomSheet(
@@ -270,7 +270,7 @@ class _HomeScreenState extends State<HomeScreen> {
                child: Builder(
                  builder: (context) {
                    final isLargeScreen = Responsive.isTabletOrLarger(context);
-                   final buttonSize = isLargeScreen ? 60.0 : 52.0;
+                   final buttonSize = isLargeScreen ? 64.0 : 52.0;
                    final iconPadding = isLargeScreen ? 12.0 : 10.0;
                    return Container(
                      width: buttonSize,
