@@ -1,4 +1,4 @@
-package com.arwin95.daylight
+package com.kaaspro.daylight
 
 import io.flutter.embedding.android.FlutterActivity
 
